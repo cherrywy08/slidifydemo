@@ -1,0 +1,50 @@
+---
+title       : Develop Data Product
+subtitle    : Shiny App Pitch Presentation
+author      : Cherry Ren
+job         : 
+framework   : io2012        # {io2012, html5slides, shower, dzslides, ...}
+highlighter : highlight.js  # {highlight.js, prettify, highlight}
+hitheme     : tomorrow      # 
+widgets     : []            # {mathjax, quiz, bootstrap}
+mode        : selfcontained # {standalone, draft}
+knit        : slidify::knit2slides
+
+---
+
+## Project Introduction
+The shiny project illustrates linear regression model in an interactive way. Boston data set in MASS library is used in the model.
+The response variable in the model is medv: median value of owner-occupied homes in $1000s, and the others are predictor variables.
+A summary of data is provided in the Data Summary tab. Both single variable and multi-variable linear regression models are built in the project.
+- For single variable linear regression model, user can select any predictor in the left panel. In the Single Variable Linear Regression Model tab, a linear regression model based on the selected predictor is built. Plot of response and predictor variables with regression line is available as well. 
+- For multi-variable linear regression model, user can select predictors in the left panel. In the Multi Variable Linear Regression Model tab, linear regression model based on the selected predictors is built
+
+When the predictors are changed, the regression model will be updated real time.
+
+---
+
+## Illustration - Single Variable Regression Model
+This is an illustration of the single variable linear regression model output. Assume user chooses 'crim' as the predictor, in the main panel, the following model will be shown
+```{r singleVariableModel, echo=FALSE, size="selecte"}
+fit <- lm(medv ~ crim, data=Boston)
+summary(fit)
+```
+
+---
+
+## Illustration - Single Variable Regression Model (con't)
+A plot of response and predictor variables with regression line is provided below the model summary
+
+```{r singleVariablePlot, echo=FALSE}
+with(Boston, plot(crim, medv))
+abline(fit, col="red")
+```
+
+---
+## Illustration - Multi Variable Regression Model
+This is an illustration of the multi-variable linear regression model output. Assume user selects 'crim', 'zn', 'indus' as predictors, in the main panel, the following model will be shown
+
+```{r multiVariableModel, echo=FALSE}
+fit2 <- lm(medv ~ crim + zn + indus, data=Boston)
+summary(fit2)
+```
